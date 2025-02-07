@@ -1,0 +1,8 @@
+.Footer-Container {
+    margin-top: auto;
+    background-color: #300d38;
+    color: #343a40;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

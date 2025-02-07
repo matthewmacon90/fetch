@@ -1,14 +1,26 @@
-import HomePage from './pages/home-page/HomePage';
+import { useState } from 'react';
+import AuthContext from './context/authContext';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import RoutesComponent from './components/routes/RoutesComponent';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-        <Header />
-        <HomePage />
-    </div>
-  );
+    const initialValues = {
+      isAuthenticated: false,
+      user: null,
+    };
+    const [auth, setAuth] = useState(initialValues);
+    console.log('App.js auth', auth);
+    return (
+      <div className="App">
+        <AuthContext.Provider value={{auth, setAuth}}>
+            <Header />
+            <RoutesComponent />
+        </AuthContext.Provider>
+        <Footer />
+      </div>
+    );
 }
 
 export default App;
