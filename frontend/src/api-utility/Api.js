@@ -10,6 +10,7 @@ class Api {
             return (await axios({ url, method, data, params, withCredentials: true })).data;
         } catch (err) {
             console.error('API Error:', err);
+            throw err;
         }
     }
 
