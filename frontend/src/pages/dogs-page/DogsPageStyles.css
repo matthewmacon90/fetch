@@ -10,9 +10,11 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     width: 100%;
+    justify-items: center;
+    align-items: center;
 }
 
 .dogs-page-modal-img {
-    width: 100%;
+    width: 60%;
     border-radius: 8px;
 }
