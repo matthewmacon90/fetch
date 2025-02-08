@@ -20,6 +20,15 @@ class DogApi extends Api {
             throw err;
         }
     }
+
+    static async getDogBreed(data) {
+        try {
+            return await this.request(`dogs/`, data, 'post');
+        } catch (err) {
+            console.error('API Error:', err);
+            throw err;
+        }
+    }
 }
 
 export default DogApi;
