@@ -21,6 +21,17 @@ class DogApi extends Api {
         }
     }
 
+    static async searchDogsNext(url, data) {
+        try {
+            url = url.replace('/', '');
+            const { breeds=null, zipCodes=null, ageMin=null, ageMax=null } = data;
+            return await this.request(url, data, 'get');
+        } catch (err) {
+            console.error('API Error:', err);
+            throw err;
+        }
+    }
+
     static async getDogBreed(data) {
         try {
             return await this.request(`dogs/`, data, 'post');

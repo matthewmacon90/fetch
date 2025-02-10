@@ -11,10 +11,18 @@ const Modal = ({children, setIsModalOpen}) => {
             }
         };
 
+        const handleEscKeyPress = (event) => {
+            if (event.key === 'Escape') {
+                setIsModalOpen(false);
+            }
+        };
+
         document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('keydown', handleEscKeyPress);
 
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('keydown', handleEscKeyPress);
         }
     }, []);
 

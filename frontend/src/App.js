@@ -11,7 +11,7 @@ function App() {
       user: null,
     };
     const [auth, setAuth] = useState(initialValues);
-    console.log('App.js auth', auth);
+
     return (
       <div className="App">
         <AuthContext.Provider value={{auth, setAuth}}>

@@ -2,7 +2,6 @@ import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import ReactPaginateComponent from "./react-paginate-components/ReactPaginate";
 import DogApi from "../../api-utility/dog-api/DogApi";
-import { BsCheck2 } from "react-icons/bs";
 import './SearchPageStyles.css';
 
 const SearchPage = () => {
@@ -27,7 +26,7 @@ const SearchPage = () => {
 
     const sortDogBreeds = () => {
         const sortedBreeds = [...dogBreeds].sort((a, b) => 
-            isAscending ? a.localeCompare(b) : b.localeCompare(a)
+            isAscending ?  b.localeCompare(a) : a.localeCompare(b)
         );
         setDogBreeds(sortedBreeds);
         setIsAscending(!isAscending);
@@ -50,7 +49,7 @@ const SearchPage = () => {
     return (
         <div className="search-page-container">
             <h1 className="search-page-title">Search for a dog breed</h1>
-            <div>
+            <div className="search-page-cta-container">
                 <button className='search-page-sort-cta' onClick={sortDogBreeds}>Sort Breeds</button>
                 <button className='search-page-sort-cta' onClick={searchDogBreeds}>Search Breeds</button>
             </div>

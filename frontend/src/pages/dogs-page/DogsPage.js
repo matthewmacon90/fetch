@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import ReactPaginateComponent from '../../components/react-paginate/ReactPaginateComponent';
 import DogsCard from './dogs-components/DogsCard';
 import Modal from '../../components/modal/Modal';
 import DogApi from '../../api-utility/dog-api/DogApi';
@@ -9,18 +10,18 @@ const DogsPage = () => {
     const location = useLocation();
     const state = location.state;
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userFilters, setUserFilters] = useState([]);
     const [dogModal, setDogModal] = useState(null);
     const [searchData, setSearchData] = useState(state);
     const [dogs, setDogs] = useState(null);
-    console.log('searchData', searchData);
+    const classNames = ['dogs-page-card-container']
+    const dogCards = dogs && dogs.map(dog => <DogsCard key={dog.id} dog={dog} handleModal={handleModal} />);
     
     useEffect(() => {
         async function fetchData() {
             try {
-                console.log('state', state);
                 const result = await DogApi.getDogBreed(state.dogs.resultIds);
                 setDogs(result);
-                console.log('result', result);
             } catch (err) {
                 console.error('dogs page', err);
             }
@@ -28,7 +29,19 @@ const DogsPage = () => {
         fetchData();
     }, [state]);
 
-    const handleModal = (name, img) => {
+    const isLastPage = async () => {
+        try {
+            const result = await DogApi.searchDogsNext(searchData.dogs.next, searchData);
+            const newDogs = await DogApi.getDogBreed(result.resultIds);
+            setDogs([...dogs, ...newDogs]);
+        } catch (err) {
+            console.error('dogs page', err);
+        }
+    }
+
+
+
+    function handleModal(name, img) {
         setDogModal({name, img});
         setIsModalOpen(!isModalOpen);
     };
@@ -36,11 +49,13 @@ const DogsPage = () => {
     return (
         <>
             <div className='dogs-page-container'>
-                <div className='dogs-page-card-container'>
-                    {dogs && 
-                        dogs.map(dog => <DogsCard key={dog.id} dog={dog} handleModal={handleModal} />)
-                    }
+                <div className='dogs-page-navigation-container'>
+                    <Link className='dog-page-link' to='/'>Home</Link>
+                    <Link className='dog-page-link' to='/search'>Search</Link>
                 </div>
+                {
+                    dogs && <ReactPaginateComponent items={dogCards} itemsPerPage={6} setUserFilteredItems={setUserFilters} classNames={classNames} isLastPage={isLastPage} />
+                }
             </div>
             {
                 isModalOpen && 
