@@ -39,8 +39,6 @@ const DogsPage = () => {
         }
     }
 
-
-
     function handleModal(name, img) {
         setDogModal({name, img});
         setIsModalOpen(!isModalOpen);

@@ -1,5 +1,6 @@
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import './LoginFormStyles.css';
 
 const LoginForm = ({login}) => {
     const LoginSchema = Yup.object().shape({
@@ -23,16 +24,16 @@ const LoginForm = ({login}) => {
                 }}
             >
                 {({ errors, touched }) => (
-                    <Form>
-                        <label htmlFor="name">Name</label>
-                        <Field id="name" type='text' name="name" placeholder="Name" />
-                        {errors.name && touched.name ? (<div>{errors.name}</div>) : null}
+                    <Form className="login-form">
+                        <label className="login-label" htmlFor="name">Name</label>
+                        <Field className='login-input' id="name" type='text' name="name" placeholder="Name" />
+                        {errors.name && touched.name ? (<div className="login-form-error">{errors.name}</div>) : null}
 
-                        <label htmlFor="email">Email</label>
-                        <Field id="email" type="email" name="email" placeholder="Email" />
-                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                        <label className="login-label"  htmlFor="email">Email</label>
+                        <Field className='login-input' id="email" type="email" name="email" placeholder="Email" />
+                        {errors.email && touched.email ? <div className="login-form-error">{errors.email}</div> : null}
 
-                        <button type="submit">Submit</button>
+                        <button className="login-form-cta" type="submit">Login</button>
                     </Form>
                 )}
             </Formik>

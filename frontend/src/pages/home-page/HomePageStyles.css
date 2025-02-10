@@ -1,0 +1,23 @@
+.home-page-navigation-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.home-page-link {
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #a23dae;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+
+    &:hover {
+        background-color: #300d38;
+        color: #fff;
+    }
+}

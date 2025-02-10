@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "./login-components/LoginForm";
 import AuthContext from "../../context/authContext";
 import Api from "../../api-utility/Api";
+import './LoginPageStyles.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -26,9 +27,13 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
+        <div className="login-page-container">
             <LoginForm login={login} />
-            {error && <div>{error}</div>}
+            {error && 
+                <div className="login-page-error">
+                    <p>{error}</p>
+                </div>
+            }
         </div>
     )
 };
