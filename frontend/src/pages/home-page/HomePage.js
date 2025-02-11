@@ -1,15 +1,45 @@
+import {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CarouselComponent from '../../components/carousel/Carousel';
+import DogApi from '../../api-utility/dog-api/DogApi';
+import fetchLogo from '../../assets/fetch-logo-white.png';
 import './HomePageStyles.css';
+import '../../components/react-paginate/ReactPaginateStyles.css'; //Messing with pagination styles
 
 const HomePage = () => {
+    const [dogImages, setDogImages] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await DogApi.CarouselDogImages();
+                setDogImages(result);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        fetchData();
+    }, []);
+
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className='home-page-container'>
+            <h1>Welcome to Fetch!</h1>
             <div className='home-page-navigation-container'>
                 <Link className='home-page-link' to="/login">Login</Link>
                 <Link className='home-page-link' to="/search">Search Dogs</Link>
             </div>
-            
+            <div className='home-page-main-container'>
+                <div className='home-page-description'>
+                    <p className='home-page-text'>Fetch is a place for families to add a new loving member! Here at Fetch we deeply care for our compainons and need great homes for these loveable dogs.</p>
+                    <p className='home-page-text'>Please consider adding a new family member today!</p>
+                    <Link className='home-page-link' to="/search">Search Dogs</Link>
+                </div>
+                <div className='home-page-logo-container'>
+                    <img className='home-page-logo' src={fetchLogo} alt="Fetch Logo" />
+                </div>
+            </div>
+            <div className='carousel-container'>
+               <CarouselComponent images={dogImages} />
+            </div>
         </div>
     );
 };

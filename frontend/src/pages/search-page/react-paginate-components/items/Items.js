@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ItemsStyles.css';
 
-const Items = ({currentItems, setUserFilteredItems}) => {
+const Items = ({currentItems, setUserFilteredItems, searchDogBreeds}) => {
+    //Code below will be modified to allow users to select multiple breeds at once to view.
     const [items, setItems] = useState([]);
     const [activeIdx, setActiveIdx] = useState([]);
 
@@ -9,8 +10,8 @@ const Items = ({currentItems, setUserFilteredItems}) => {
         setUserFilteredItems(items);
     }, [items]);
 
+    //Saving this for future use of searching multiple breeds.
     const handleClick = (item, index) => {
-        console.log(item.target.innerText);
         const value = item.target.innerText;
         const updatedItems = items.includes(value) ? items.filter((item) => item !== value) : [value];
         const upatedIdx = activeIdx.includes(index) ? activeIdx.filter((idx) => idx !== index ) : [index];
@@ -23,7 +24,7 @@ const Items = ({currentItems, setUserFilteredItems}) => {
         <div className="items-container">
             {currentItems && currentItems.map((item, index) => (
                 <div className="items-cta-container" key={index}>
-                    <button onClick={(e) => handleClick(e, index)} className={`items-cta ${activeIdx.includes(index) ? 'item-cta-active' : ''}`}>{item}</button>
+                    <button onClick={(e) => searchDogBreeds(e.target.innerText)} className={`items-cta ${activeIdx.includes(index) ? 'item-cta-active' : ''}`}>{item}</button>
                 </div>
             ))}
         </div>

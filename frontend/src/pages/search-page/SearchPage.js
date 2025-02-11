@@ -31,10 +31,11 @@ const SearchPage = () => {
         setIsAscending(!isAscending);
     };
 
-    const searchDogBreeds = async () => {
+    //Passing this directly until support for multiple breeds is added.
+    const searchDogBreeds = async (breed) => {
         try {
             const result = await DogApi.searchDogs({
-                breeds: userSelectedBreed
+                breeds: breed //userSelectedBreed
             });
             result && navigate('/dogs', {state: {dogs: result}});
         } catch (err) {
@@ -51,7 +52,7 @@ const SearchPage = () => {
                 <button className='search-page-sort-cta' onClick={searchDogBreeds}>Search Breeds</button>
             </div>
 
-            {dogBreeds && <ReactPaginateComponent items={dogBreeds} itemsPerPage={numItems} setUserFilteredItems={setUserSelectedBreed}/> }
+            {dogBreeds && <ReactPaginateComponent items={dogBreeds} itemsPerPage={numItems} setUserFilteredItems={setUserSelectedBreed} searchDogBreeds={searchDogBreeds}/> }
         </div>
     )
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import ReactPaginateComponent from '../../components/react-paginate/ReactPaginateComponent';
 import DogsCard from './dogs-components/DogsCard';
 import Modal from '../../components/modal/Modal';
@@ -7,10 +7,11 @@ import DogApi from '../../api-utility/dog-api/DogApi';
 import './DogsPageStyles.css';
 
 const DogsPage = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const state = location.state;
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [userFilters, setUserFilters] = useState([]);
+    const [userFilters, setUserFilters] = useState([]); //future ability to add filters
     const [dogModal, setDogModal] = useState(null);
     const [searchData, setSearchData] = useState(state);
     const [dogs, setDogs] = useState(null);
@@ -23,7 +24,7 @@ const DogsPage = () => {
                 const result = await DogApi.getDogBreed(state.dogs.resultIds);
                 setDogs(result);
             } catch (err) {
-                console.error('dogs page', err);
+                err && navigate('/login');
             }
         }
         fetchData();
@@ -35,7 +36,7 @@ const DogsPage = () => {
             const newDogs = await DogApi.getDogBreed(result.resultIds);
             setDogs([...dogs, ...newDogs]);
         } catch (err) {
-            console.error('dogs page', err);
+            err && navigate('/login');
         }
     }
 

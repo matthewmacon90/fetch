@@ -3,7 +3,7 @@ import Items from './items/Items';
 import ReactPaginate from 'react-paginate';
 import './ReactPaginateStyles.css';
 
-const ReactPaginateComponent = ({ items, itemsPerPage, setUserFilteredItems }) => {
+const ReactPaginateComponent = ({ items, itemsPerPage, setUserFilteredItems, searchDogBreeds }) => {
     const [ itemOffset, setItemOffset ] = useState(0);
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = items.slice(itemOffset, endOffset);
@@ -17,7 +17,7 @@ const ReactPaginateComponent = ({ items, itemsPerPage, setUserFilteredItems }) =
     return (
         <div className='react-paginate-container'>
             <div className='pagination-items-container'>
-                <Items currentItems={currentItems} setUserFilteredItems={setUserFilteredItems} />
+                <Items currentItems={currentItems} setUserFilteredItems={setUserFilteredItems} searchDogBreeds={searchDogBreeds} />
             </div>
             <div className='pagination-container'>
                 <ReactPaginate

@@ -1,0 +1,19 @@
+.carousel-item {
+    position: relative;
+    width: 1200px;
+    height: 600px;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-img.show {
+    opacity: 1;
+}
+

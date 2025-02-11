@@ -18,7 +18,6 @@ class Api {
         try {
             const { name, email } = user;
             const response = await this.request('auth/login', { name, email }, 'post');
-            console.log('api response', response);
             return response;
         } catch (err) {
             console.error('API Error:', err);
