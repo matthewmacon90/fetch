@@ -53,6 +53,10 @@
     color: #fff;
 }
 
+.home-text-bold {
+    color: #ffa900;
+}
+
 .home-page-logo-container {
     display: flex;
     justify-content: center;

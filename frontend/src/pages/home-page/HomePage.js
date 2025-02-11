@@ -22,15 +22,15 @@ const HomePage = () => {
 
     return (
         <div className='home-page-container'>
-            <h1>Welcome to Fetch!</h1>
+            <h1>Welcome to <b className='home-text-bold'>Fetch</b>!</h1>
             <div className='home-page-navigation-container'>
                 <Link className='home-page-link' to="/login">Login</Link>
                 <Link className='home-page-link' to="/search">Search Dogs</Link>
             </div>
             <div className='home-page-main-container'>
                 <div className='home-page-description'>
-                    <p className='home-page-text'>Fetch is a place for families to add a new loving member! Here at Fetch we deeply care for our compainons and need great homes for these loveable dogs.</p>
-                    <p className='home-page-text'>Please consider adding a new family member today!</p>
+                    <p className='home-page-text'><b className='home-text-bold'>Fetch</b> is a place for families to add a new loving member! Here at <b className='home-text-bold'>Fetch</b> we deeply care for our companions and need great homes for these loveable dogs.</p>
+                    <p className='home-page-text'>Please consider adding a new family member <b className='home-text-bold'>today</b>!</p>
                     <Link className='home-page-link' to="/search">Search Dogs</Link>
                 </div>
                 <div className='home-page-logo-container'>
