@@ -10,13 +10,13 @@ const ReactPaginateComponent = ({ items, itemsPerPage, setUserFilteredItems, cla
     const pageCount = Math.ceil(items.length / itemsPerPage);
 
     const handlePageClick = (event) => {
-        const newPage = event.selected;
-        if(newPage === pageCount - 1) {
+        const selectedPage = event.selected;
+        if(selectedPage === pageCount - 1) {
             isLastPage();
         };
-        const newOffset = (event.selected * itemsPerPage) % items.length;
+        const newOffset = (selectedPage * itemsPerPage) % items.length;
         setItemOffset(newOffset);
-      };
+    };
 
     return (
         <div className='react-paginate-container'>
