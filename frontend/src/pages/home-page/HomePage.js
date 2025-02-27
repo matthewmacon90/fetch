@@ -14,6 +14,7 @@ const HomePage = () => {
     };
     const [dogImages, setDogImages] = useState([]);
     const [formData, setFormData] = useState(initialState);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -49,9 +50,10 @@ const HomePage = () => {
             const queryParams = new URLSearchParams({key, value}).toString();
             const newUrl = `${window.location.origin}?${queryParams}`;
             window.history.pushState(null, '', newUrl);
-
+            setIsLoading(true);
             const result = await Api.impactApiCall(key, value);
             console.log('API RESULT: ', result);
+            setIsLoading(false);
         } catch (err) {
             console.error(err);
         }
@@ -71,6 +73,7 @@ const HomePage = () => {
                     <input className='home-page-input' type="text" name="value" placeholder="Enter Value" onChange={handleChange} value={formData.value} />
                     <button type='submit' className='home-page-link'>Submit</button>
                 </form>
+                {isLoading ? <p className='home-page-text-impact'>Loading...</p> : <p className='home-page-text-impact'>This API call will be logged in the console.</p>}
             </div>
             <div className='home-page-main-container'>
                 <div className='home-page-description'>
