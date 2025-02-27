@@ -6,21 +6,19 @@ const useGTM = () => {
     const location = useLocation();
     const query = useQuery();
 
-    console.log("location", location);
-    console.log("location.pathname", location.pathname);
-    console.log("location.search", location.search);
-
     useEffect(() => {
         const handleGtmLoaded = () => {
             const key = query.get("key");
             const value = query.get("value");
-            console.log("key", key);
-            console.log("value", value);
 
             window.dataLayer.push({
                 event: "pageview",
                 page: location.pathname,
             });
+
+            // console.log('window.dataLayer', window.dataLayer);
+            // let filtered = window.dataLayer.filter(item => item.event !== 'gtm')
+            // console.log('filter', filtered);
 
             window.dataLayer.push({
                 event: "queryParamsEvent",
@@ -42,11 +40,9 @@ const useGTM = () => {
         if (window.dataLayer) {
             handleGtmLoaded();
         } else {
-            // Listen for GTM initialization
             window.addEventListener("gtm.js", handleGtmLoaded);
         }
 
-        // Cleanup event listener on unmount
         return () => {
             window.removeEventListener("gtm.js", handleGtmLoaded);
         };
