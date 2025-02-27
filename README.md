@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Visit project here: [https://github.com/matthewmacon90/fetch](https://fetch-dogs.netlify.app/)
+Visit project here: [Impact-Assessment link](https://fetch-dogs.netlify.app/)
 
 ## Available Scripts
 
