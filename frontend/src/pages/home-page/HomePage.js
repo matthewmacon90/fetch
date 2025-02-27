@@ -66,9 +66,9 @@ const HomePage = () => {
             </div>
             <div className='home-page-impact-container'>
                 <form className='home-page-impact-form' onSubmit={(e) => handleSubmit(e)}>
-                    <label className='home-page-label'>Impact API Call</label>
-                    <input type="text" name="key" placeholder="Enter Key" onChange={handleChange} value={formData.key} />
-                    <input type="text" name="value" placeholder="Enter Value" onChange={handleChange} value={formData.value} />
+                    <label className='home-page-label'>Impact-Assessment API Call</label>
+                    <input className='home-page-input' type="text" name="key" placeholder="Enter Key" onChange={handleChange} value={formData.key} />
+                    <input className='home-page-input' type="text" name="value" placeholder="Enter Value" onChange={handleChange} value={formData.value} />
                     <button type='submit' className='home-page-link'>Submit</button>
                 </form>
             </div>
