@@ -32,6 +32,21 @@ class Api {
             console.error('API Error:', err);
         }
     }
+
+    static async impactApiCall(key, value) {
+        try {
+            const response = await axios.get(`https://httpbin.org/get`, {
+
+                params: {
+                    key: key,
+                    value: value,
+                },
+            });
+            return response.data;
+        } catch (err) {
+            console.error('API Error:', err);
+        }
+    }
 }
 
 export default Api;
