@@ -7,7 +7,7 @@ import RoutesComponent from "./components/routes/RoutesComponent";
 import "./App.css";
 
 function App() {
-    useGTM();
+    // useGTM();
     const initialValues = {
         isAuthenticated: false,
         user: null,
