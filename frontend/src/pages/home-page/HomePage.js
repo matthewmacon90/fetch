@@ -8,13 +8,13 @@ import './HomePageStyles.css';
 import '../../components/react-paginate/ReactPaginateStyles.css'; //Messing with pagination styles
 
 const HomePage = () => {
-    const initialState = {
-        key: 'key',
-        value: 'value'
-    };
+    // const initialState = {
+    //     key: 'key',
+    //     value: 'value'
+    // };
     const [dogImages, setDogImages] = useState([]);
-    const [formData, setFormData] = useState(initialState);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [formData, setFormData] = useState(initialState);
+    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -28,36 +28,38 @@ const HomePage = () => {
         fetchData();
     }, []);
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
 
-    const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'queryParamsEvent',
-                key: formData.key,
-                value: formData.value
-            });
-            console.log('window dataLayer', window.dataLayer);
-            const filteredData = window.dataLayer.filter((item) => item.event === 'queryParamsEvent');
-            const recentQuery = filteredData[filteredData.length - 1];
-            const { key, value } = recentQuery;
-            const queryParams = new URLSearchParams({key, value}).toString();
-            const newUrl = `${window.location.origin}?${queryParams}`;
-            window.history.pushState(null, '', newUrl);
-            setIsLoading(true);
-            const result = await Api.impactApiCall(key, value);
-            console.log('API RESULT: ', result);
-            setIsLoading(false);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    //Impact assessment: Commenting out for now
+    // const handleChange = (e) => {
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value
+    //     });
+    // };
+
+    // const handleSubmit = async (e) => {
+    //     try {
+    //         e.preventDefault();
+    //         window.dataLayer.push({
+    //             event: 'queryParamsEvent',
+    //             key: formData.key,
+    //             value: formData.value
+    //         });
+    //         console.log('window dataLayer', window.dataLayer);
+    //         const filteredData = window.dataLayer.filter((item) => item.event === 'queryParamsEvent');
+    //         const recentQuery = filteredData[filteredData.length - 1];
+    //         const { key, value } = recentQuery;
+    //         const queryParams = new URLSearchParams({key, value}).toString();
+    //         const newUrl = `${window.location.origin}?${queryParams}`;
+    //         window.history.pushState(null, '', newUrl);
+    //         setIsLoading(true);
+    //         const result = await Api.impactApiCall(key, value);
+    //         console.log('API RESULT: ', result);
+    //         setIsLoading(false);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // };
 
     return (
         <div className='home-page-container'>
@@ -66,7 +68,7 @@ const HomePage = () => {
                 <Link className='home-page-link' to="/login">Login</Link>
                 <Link className='home-page-link' to="/search">Search Dogs</Link>
             </div>
-            <div className='home-page-impact-container'>
+            {/* <div className='home-page-impact-container'>
                 <form className='home-page-impact-form' onSubmit={(e) => handleSubmit(e)}>
                     <label className='home-page-label'>Impact-Assessment API Call</label>
                     <input className='home-page-input' type="text" name="key" placeholder="Enter Key" onChange={handleChange} value={formData.key} />
@@ -74,7 +76,7 @@ const HomePage = () => {
                     <button type='submit' className='home-page-link'>Submit</button>
                 </form>
                 {isLoading ? <p className='home-page-text-impact'>Loading...</p> : <p className='home-page-text-impact'>This API call will be logged in the console.</p>}
-            </div>
+            </div>  */}
             <div className='home-page-main-container'>
                 <div className='home-page-description'>
                     <p className='home-page-text'><b className='home-text-bold'>Fetch</b> is a place for families to add a new loving member! Here at <b className='home-text-bold'>Fetch</b> we deeply care for our companions and need great homes for these loveable dogs.</p>
